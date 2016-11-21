@@ -1,6 +1,6 @@
-﻿//Author: David Barnes
+﻿//Author: Morgan Boon
 //CIS 237
-//Assignment 1
+//Assignment 5
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +11,29 @@ namespace assignment1
 {
     class UserInterface
     {
-        const int maxMenuChoice = 5;
+        const int maxMenuChoice = 7;
+      
         //---------------------------------------------------
         //Public Methods
         //---------------------------------------------------
+
+        //Get user input for the id to update
+        public string GetIdToUpdate()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Enter id to update");
+            Console.Write(">");
+            return Console.ReadLine();
+        }
+
+        //Get user input for the id to delete
+        public string GetIdToDelete()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Enter id to delete");
+            Console.Write(">");
+            return Console.ReadLine();
+        }
 
         //Display Welcome Greeting
         public void DisplayWelcomeGreeting()
@@ -73,8 +92,16 @@ namespace assignment1
             Console.WriteLine("What is the new items Pack?");
             Console.Write("> ");
             string pack = Console.ReadLine();
+            Console.WriteLine("What is the new item's price?");
+            Console.Write(">");
+            string price = Console.ReadLine();
+            Console.WriteLine("Is the new item active? (Y for yes, N for no)");
+            Console.Write("> ");
+            string active = Console.ReadLine().Trim().ToUpper();
 
-            return new string[] { id, description, pack };
+
+
+            return new string[] { id, description, pack, price, active};
         }
 
         //Display Import Success
@@ -88,7 +115,7 @@ namespace assignment1
         public void DisplayImportError()
         {
             Console.WriteLine();
-            Console.WriteLine("There was an error importing the CSV");
+            Console.WriteLine("There was an error importing the Wine List");
         }
 
         //Display All Items
@@ -111,8 +138,6 @@ namespace assignment1
         //Display Item Found Success
         public void DisplayItemFound(string itemInformation)
         {
-            Console.WriteLine();
-            Console.WriteLine("Item Found!");
             Console.WriteLine(itemInformation);
         }
 
@@ -137,6 +162,33 @@ namespace assignment1
             Console.WriteLine("An Item With That Id Already Exists");
         }
 
+        //Display Update Item Success
+        public void DisplayItemUpdateSuccess()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Item Update Was Successful");
+        }
+
+        //Display Update Item Failure
+        public void DisplayItemUpdateFailure()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Item Update Was Unsuccessful");
+        }
+
+        //Display Delete Item Success
+        public void DisplayItemDeleteSuccess()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Item Deletion Was Successful");
+        }
+
+        //Display Delete Item Failure
+        public void DisplayItemDeleteFailure()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Item Deletion Was Unsuccessful");
+        }
 
         //---------------------------------------------------
         //Private Methods
@@ -148,11 +200,13 @@ namespace assignment1
             Console.WriteLine();
             Console.WriteLine("What would you like to do?");
             Console.WriteLine();
-            Console.WriteLine("1. Load Wine List From CSV");
+            Console.WriteLine("1. Load Wine List");
             Console.WriteLine("2. Print The Entire List Of Items");
-            Console.WriteLine("3. Search For An Item");
+            Console.WriteLine("3. Search For An Item by item ID");
             Console.WriteLine("4. Add New Item To The List");
-            Console.WriteLine("5. Exit Program");
+            Console.WriteLine("5. Update Item");
+            Console.WriteLine("6. Delete item");
+            Console.WriteLine("7. Exit Program");
         }
 
         //Display the Prompt
@@ -203,5 +257,8 @@ namespace assignment1
             //Return the reutrnValue
             return returnValue;
         }
+
+        public void MaximizeWindow()
+        { }
     }
 }
